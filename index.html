@@ -117,7 +117,7 @@
       padding: calc(var(--nav-height) + 236px) 24px 52px;
       position: relative;
       overflow: hidden;
-      background: var(--cream);
+      background: var(--white);
     }
 
     /* Foto de fondo de mamá — crop 3:4, foco cara */
@@ -127,15 +127,24 @@
       height: 72%;
       z-index: 0;
     }
+    /* Fade superior: blanco → transparente en los primeros 80px para suavizar el borde de arriba */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 90px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, transparent 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
     .hero-bg img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center 10%;
-      filter: blur(0.4px) saturate(0.92) brightness(0.99);
       transform: scale(1.02);
     }
-    /* Fade: muy tenue hasta el 50%, blanco solo al final — capa extendida tapa la línea */
+    /* Fade inferior: capa extendida tapa la línea de corte */
     .hero-bg-fade {
       position: absolute;
       top: 0; left: 0; right: 0;
