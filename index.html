@@ -108,41 +108,41 @@
 
     /* ===== HERO ===== */
     .hero {
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       text-align: center;
-      padding: calc(var(--nav-height) + 40px) 24px 64px;
+      padding: calc(var(--nav-height) + 44px) 24px 52px;
       position: relative;
       overflow: hidden;
     }
 
-    /* Foto de fondo de mamá — solo en el tercio superior del hero */
+    /* Foto de fondo de mamá — cubre más para funde suave, sin línea de corte */
     .hero-bg {
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 52%;
+      height: 68%;
       z-index: 0;
     }
     .hero-bg img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 18%;
-      filter: blur(1px) saturate(0.88) brightness(0.97);
+      object-position: center 15%;
+      filter: blur(0.8px) saturate(0.9) brightness(0.98);
       transform: scale(1.03);
     }
-    /* Gradiente que funde la foto con el blanco */
+    /* Gradiente suave — cara visible, blanco aparece sólo al final */
     .hero-bg-fade {
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(255,255,255,0.04) 0%,
-        rgba(255,255,255,0.65) 55%,
-        white                  85%
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.22) 38%,
+        rgba(255,255,255,0.78) 72%,
+        white                  92%
       );
     }
 
@@ -220,6 +220,7 @@
       line-height: 1;
       pointer-events: none;
       user-select: none;
+      z-index: 2;
     }
     .cat-banner .banner-num { color: rgba(255,255,255,0.2); }
 
@@ -330,6 +331,7 @@
       width: 100%;
       height: 320px;
       overflow: hidden;
+      margin-top: -8px;
       margin-bottom: 20px;
       position: relative;
       background: linear-gradient(140deg, var(--cream-dark) 0%, var(--teal-light) 100%);
@@ -339,6 +341,16 @@
       width: 100%; height: 100%;
       object-fit: cover;
       object-position: center;
+    }
+    /* Degradé blanco arriba del banner — funde con el texto de arriba */
+    .cat-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 48%;
+      background: linear-gradient(to bottom, white 0%, rgba(255,255,255,0) 100%);
+      z-index: 1;
+      pointer-events: none;
     }
     /* Placeholder gradient mientras no hay imagen */
     .cat-banner-placeholder {
